@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 
 app.get('/webhook', function(req, res){
   if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === "Codecool is cool") {
+      req.query['hub.verify_token'] === "MyRouters") {
     console.log("Validating webhook");
     res.status(200).send(req.query['hub.challenge']);
   } else {
@@ -143,7 +143,7 @@ function sendStructuredMessage(recipientId) {
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: 'EAAD9lWOUdi8BAIXbZC6SSWxzmHEM8cgTHJZCtibTsrJ1qCL9Dhk78Xgy8vbnG9XEiBCLQUBBIDJRKY7QxOYHnQM6CLAQpPawMYrbmPBIrJSbaMbKOd78n24n7aMu78cnnJinT2qxZCZCPWQ79EDVnMLRMZC9EVhZBZBc1e9dZABFpgZDZD' },
+    qs: { access_token: 'EAAUynTT85XgBAGWHEGfblN7wn3RwWOv1sAhYtQfMtI022LP3y0osWLrYiCm1FEp1frvcXfPCMKDY1xnIMWoPf8EbETs2DV8EoqgxzQB2ZAhELKUr14JwS3P1YwJhMteGJneGSwwxeu2rHjLNZAZCCZAUq0kAxOgOjNzgWijLaQZDZD' },
     method: 'POST',
     json: messageData
 
