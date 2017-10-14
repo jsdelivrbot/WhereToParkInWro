@@ -2,6 +2,10 @@ var express = require('express');
 var app = express();
 var lastResp = null;
 var facebookApi = require('./facebookApi.js');
+var senderID
+var recipientID
+var timeOfMessage
+var message
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -18,13 +22,10 @@ app.get('/', function(request, response) {
 });
 
 app.get('/valid', function(request, response) {
-  response.send("Well, last time it:" + lastResp === 200 ? 'Worked' : "Error " + lastResp);
+  // response.send("Well, last time it:" + lastResp === 200 ? 'Worked' : "Error " + lastResp);
+  response.send(
+    {senderID,   recipientID,  timeOfMessage, message})
 });
-
-// app.post('/webhook', function(request, response) {
-//   // response.send('Hi there!!!');
-//   facebookApi.callSendAPI("Hi There!!!")
-// })
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
@@ -58,10 +59,10 @@ app.post('/webhook', function (req, res) {
 
 
 function receivedMessage(event) {
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
-  var timeOfMessage = event.timestamp;
-  var message = event.message;
+  senderID = event.sender.id;
+  recipientID = event.recipient.id;
+  timeOfMessage = event.timestamp;
+  message = event.message;
 
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
@@ -92,7 +93,7 @@ function echo(recipientId, messageText){
     }
   };
 
-  callSendAPI(echo);
+  facebookApi.callSendAPI(echo);
 }
 
 
@@ -140,30 +141,7 @@ function sendStructuredMessage(recipientId) {
     }
   };
 
-  callSendAPI(messageData);
-}
-
-
-function callSendAPI(messageData) {
-  request({
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: 'EAAUynTT85XgBAGWHEGfblN7wn3RwWOv1sAhYtQfMtI022LP3y0osWLrYiCm1FEp1frvcXfPCMKDY1xnIMWoPf8EbETs2DV8EoqgxzQB2ZAhELKUr14JwS3P1YwJhMteGJneGSwwxeu2rHjLNZAZCCZAUq0kAxOgOjNzgWijLaQZDZD' },
-    method: 'POST',
-    json: messageData
-
-  }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var recipientId = body.recipient_id;
-      var messageId = body.message_id;
-
-      console.log("Successfully sent generic message with id %s to recipient %s",
-        messageId, recipientId);
-    } else {
-      console.error("Unable to send message.");
-      console.error(response);
-      console.error(error);
-    }
-  });
+  facebookApi.callSendAPI(messageData);
 }
 
 app.listen(app.get('port'), function() {
