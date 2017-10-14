@@ -34,7 +34,7 @@ app.get('/pingme', function(request, response) {
 });
 
 app.get('/valid', function(request, response) {
-  response.send("Well, last time it:" + lastResp == 200 ? 'Worked' : "Error " + lastResp);
+  response.send("Well, last time it:" + lastResp === 200 ? 'Worked' : "Error " + lastResp);
 });
 
 app.listen(app.get('port'), function() {
