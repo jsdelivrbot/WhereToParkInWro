@@ -21,10 +21,10 @@ app.get('/valid', function(request, response) {
   response.send("Well, last time it:" + lastResp === 200 ? 'Worked' : "Error " + lastResp);
 });
 
-app.post('/webhook', function(request, response) {
-  // response.send('Hi there!!!');
-  facebookApi.callSendAPI("Hi There!!!")
-})
+// app.post('/webhook', function(request, response) {
+//   // response.send('Hi there!!!');
+//   facebookApi.callSendAPI("Hi There!!!")
+// })
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
