@@ -1,6 +1,6 @@
 {
   "name": "where-to-park-in-wro",
-  "version": "0.0.0.1",
+  "version": "0.0.1",
   "description": "Simple Heroku app to be a messanger bot",
   "engines": {
     "node": "6.11.1"
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/MaciejTrojniarz/WhereToParkInWro"
   },
   "keywords": [
     "node",
