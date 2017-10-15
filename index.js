@@ -2,10 +2,11 @@ var express = require('express');
 var test = require('./test-module.js')
 var app = express();
 var lastResp = null;
-var facebookApi = require('./facebookApi.js');
-var facebookMessageParser = require('./facebookMessageParser.js');
+var facebookApi = require('./facebook/facebookApi.js');
+var facebookApiIntegation = require('./facebook/facebookApiIntegration.js')
+var facebookMessageParser = require('./facebook/facebookMessageParser.js');
 var bodyParser = require('body-parser');
-var fbMsgListeners = require('./facebookMsgListeners.js')
+var fbMsgListeners = require('./facebook/facebookMsgListeners.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -18,14 +19,14 @@ app.get('/', function(req, res) {
   res.send("Try it!!!");
 })
 
-app.get('/webhook', facebookApi.validation);
+app.get('/webhook', facebookApiIntegation);
 
 app.get('/es6', (request, response) => {response.send('Works even better!!!')})
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
-  var messages = facebookMessageParser.parseMessages(data);
+  var messages = facebookMessageParser(data);
   messages.forEach(function(message) {
     fbMsgListeners.listeners.forEach((listener) => {listener.run(message)})
   });
