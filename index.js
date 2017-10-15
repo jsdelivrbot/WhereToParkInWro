@@ -22,9 +22,10 @@ app.post('/webhook', function (req, res) {
   var data = req.body;
 
   var messages = facebookMessageParser.parseMessages(data);
-  console.log('====================================');
-  console.log(messages);
-  console.log('====================================');
+  messages.forEach(function(message) {
+    facebookApi.sendMessage(message.senderId, message.message);
+    console.log(message);
+  });
 
     // Assume all went well.
     //
