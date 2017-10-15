@@ -29,7 +29,7 @@ app.post('/webhook', function (req, res) {
   var messages = facebookMessageParser.parseMessages(data);
   messages.forEach(function(message) {
     if (message.message === 'location') {
-      facebookApi.askForLocation(message.senderId);
+      facebookApi.askForLocation(message.senderId, message.message);
     }
     facebookApi.sendMessage(message.senderId, message.message);
     console.log(message);
