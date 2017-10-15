@@ -10,7 +10,12 @@ module.exports = {
               if(entry.messaging) {
                 entry.messaging.forEach(function(event) {
                   if (event.message) {
-                    messages.push({message: event.message.text, senderId: event.sender.id});
+                    messages.push(
+                      {
+                        message: event.message.text,
+                        senderId: event.sender.id,
+                        attachments: event.message.attachments
+                      });
                   } else {
                     console.log("Webhook received unknown event: ", event);
                   }
