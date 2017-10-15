@@ -1,4 +1,3 @@
-var facebookApi = require('./facebookApi.js')
 var locationListener = require('./locationListener.js')
 var echoServiceListener = require('./echoServiceListener.js')
 var theParkListener = require('./theParkListener.js')
@@ -22,17 +21,13 @@ const runAll = (message, listeners=fbBisteners) => {
     );
 }
 
-const runUntilHandled = (message, listeners=fbBisteners) => {
-  listeners.some((listener) => {
-    var newMessage = listener.run(message)
-    if(newMessage) {
-      facebookApi.callSendAPI(newMessage);
-    }
-  });
+const buildReplyTo = (message, listeners=fbBisteners) => {
+  for(var i =0 ; i<listeners.length;i++) {
+    var newMessage= listeners[i].run(message);
+    if(newMessage) return newMessage
+  }
 }
 
 module.exports = {
-  runAll,
-  runUntilHandled,
-  listeners: fbBisteners
+  buildReplyTo
 }

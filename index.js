@@ -6,7 +6,7 @@ var facebookApi = require('./facebook/facebookApi.js');
 var facebookApiIntegation = require('./facebook/facebookApiIntegration.js')
 var facebookMessageParser = require('./facebook/facebookMessageParser.js');
 var bodyParser = require('body-parser');
-var fbMsgListeners = require('./facebook/facebookMsgListeners.js')
+var messageFactory = require('./facebook/facebookMsgListeners.js')
 var locationListener = require('./facebook/locationListener.js')
 
 app.use(bodyParser.json());
@@ -16,20 +16,14 @@ app.use(bodyParser.urlencoded({
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/', function(req, res) {
-  res.send("<a href=\"comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic\">Testing Maps</a>");
-})
-
 app.get('/webhook', facebookApiIntegation);
-
-app.get('/es6', (request, response) => {response.send('Works even better!!!')})
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
   var messages = facebookMessageParser(data);
   messages.forEach(function(message) {
-    fbMsgListeners.runUntilHandled(message)
+    facebookApi.callSendAPI(messageFactory.buildReplyTo(message))
   });
 
     // Assume all went well.
