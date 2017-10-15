@@ -1,6 +1,6 @@
 var facebookApi = require('./facebookApi')
 const echoServiceListener = {
-  run: (message) => facebookApi.sendMessage(message.senderId, message.message)
+  run: (message) => message
 }
 
 module.exports = echoServiceListener
