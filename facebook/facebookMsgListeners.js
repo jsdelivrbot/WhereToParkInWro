@@ -10,7 +10,6 @@ const debug = {
 }
 
 const fbBisteners = [
-  theParkListener,
   locationListener,
   echoServiceListener,
   debug
