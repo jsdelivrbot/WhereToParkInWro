@@ -28,11 +28,11 @@ app.post('/webhook', function (req, res) {
 
   var messages = facebookMessageParser(data);
   messages.forEach(function(message) {
-    if (message.message === location) {
-      fbMsgListeners.listeners.forEach((listener) => {listener.run('Now you are lost and again this is my fault..')})
-    } else {
-      fbMsgListeners.listeners.forEach((listener) => {listener.run(message)})
+    var responseAsText = message.message
+    if (message.message === "location") {
+      message.message = 'Now you are lost and again this is my fault..'
     }
+    fbMsgListeners.listeners.forEach((listener) => {listener.run(message)})
   });
 
     // Assume all went well.
