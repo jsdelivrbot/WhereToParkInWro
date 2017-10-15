@@ -1,3 +1,4 @@
+var facebookApi = require('./facebookApi.js')
 const locationListener = {
   run: (message) => {
     if(message.message.indexOf('location') !== -1) {
