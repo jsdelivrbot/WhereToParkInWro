@@ -3,12 +3,12 @@ var _ = require('lodash');
 
 const validation = (req, res) => {
   console.log(req)
-  if (_.get(req, ['hub.mode']) === 'subscribe' &&
-      _.get(req, ['hub.verify_token']) === "MyRouters") {
+  if (req.query['hub.mode'] === 'subscribe' &&
+      req.query['hub.verify_token'] === "MyRouters") {
         //Just don't change the bloody password above
     console.log("Validating webhook");
     //So the facebook's messenger will be validating this..
-    res.status(200).send(_.get(req,['hub.challenge']));
+    res.status(200).send(req.query['hub.challenge']);
     lastResp = 200;
   } else {
     console.error("Failed validation. Make sure the validation tokens match.");
