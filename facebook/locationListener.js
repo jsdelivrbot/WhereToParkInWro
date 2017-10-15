@@ -35,8 +35,8 @@ const sentMap = (recipient_id, coordinates) => ({
     }
 })
 
-const getLat = (coordinates) => coordinates.lat - 0.00001
-const getLong = (coordinates) => coordinates.long - 0.00003
+const getLat = (coordinates) => coordinates.lat+0.0009
+const getLong = (coordinates) => coordinates.long+0.0010
 
 const askForLocation = (recipient_id) => (
   {
