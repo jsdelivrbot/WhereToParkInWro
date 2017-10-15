@@ -20,7 +20,9 @@ app.get('/', function(req, res) {
 app.get('/webhook', facebookApi.validation);
 
 app.get('/es6', (request, response) => {response.send('Works even better!!!')})
+
 app.get('/test', test.testMethod)
+
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
