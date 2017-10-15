@@ -24,7 +24,12 @@ const runAll = (message, listeners=fbBisteners) => {
 }
 
 const runUntilHandled = (message, listeners=fbBisteners) => {
-  listeners.some((listener) => listener.run(message));
+  listeners.some((listener) => {
+    var newMessage = listener.run(message)
+    if(newMessage) {
+      facebookApi.callSendAPI(newMessage);
+    }
+  });
 }
 
 module.exports = {

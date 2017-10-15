@@ -37,21 +37,4 @@ module.exports = {
 
     this.callSendAPI(echo);
   },
-
-  askForLocation(recipientId, messageText) {
-    var askForLocation = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        text: messageText,
-        quick_replies:[
-          {
-            "content_type":"location"
-          }
-        ]
-      },
-    }
-    this.callSendAPI(askForLocation)
-  }
 }
