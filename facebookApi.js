@@ -1,5 +1,6 @@
-module.exports = {
+var request = require('request');
 
+module.exports = {
   validation(req, res){
     if (req.query['hub.mode'] === 'subscribe' &&
         req.query['hub.verify_token'] === "MyRouters") {
@@ -35,6 +36,19 @@ module.exports = {
         console.error(error);
       }
     });
-  }
+  },
 
+  sendMessage(recipientId, messageText){
+    // Construct reply message
+    var echo = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        text: messageText
+      }
+    };
+
+    this.callSendAPI(echo);
+  }
 }
