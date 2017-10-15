@@ -5,6 +5,7 @@ var lastResp = null;
 var facebookApi = require('./facebookApi.js');
 var facebookMessageParser = require('./facebookMessageParser.js');
 var bodyParser = require('body-parser');
+var fbMsgListeners = require('./facebookMsgListeners.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -21,18 +22,12 @@ app.get('/webhook', facebookApi.validation);
 
 app.get('/es6', (request, response) => {response.send('Works even better!!!')})
 
-app.get('/test', test.testMethod)
-
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
   var messages = facebookMessageParser.parseMessages(data);
   messages.forEach(function(message) {
-    if (message.message === 'location') {
-      facebookApi.askForLocation(message.senderId, message.message);
-    }
-    facebookApi.sendMessage(message.senderId, message.message);
-    console.log(message);
+    fbMsgListeners.listeners.forEach((listener) => {listener.run(message)})
   });
 
     // Assume all went well.
