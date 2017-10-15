@@ -5,7 +5,7 @@ var echoServiceListener = require('./echoServiceListener.js')
 
 
 const debug = {
-  run: (message) => console.log(message)
+  run: (message) => console.log(JSON.stringify(message))
 }
 
 const fbBisteners = [
