@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(req, res) {
-  res.send("Try it!!!");
+  res.send("<a href=\"comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic\">Testing Maps</a>");
 })
 
 app.get('/webhook', facebookApiIntegation);
