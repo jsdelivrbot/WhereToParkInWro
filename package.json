@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.2.6",
-  "description": "A sample Node.js app using Express 4",
+  "name": "where-to-park-in-wro",
+  "version": "0.0.0.1",
+  "description": "Simple Heroku app to be a messanger bot",
   "engines": {
     "node": "6.11.1"
   },
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "request": "^2.81.0",
     "ejs": "2.5.6",
     "express": "4.15.2"
   },
