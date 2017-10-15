@@ -1,4 +1,5 @@
 var express = require('express');
+var test = require('./test-module.js')
 var app = express();
 var lastResp = null;
 var facebookApi = require('./facebookApi.js');
