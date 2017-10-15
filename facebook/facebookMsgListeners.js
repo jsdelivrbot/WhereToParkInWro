@@ -1,6 +1,7 @@
 var facebookApi = require('./facebookApi.js')
 var locationListener = require('./locationListener.js')
 var echoServiceListener = require('./echoServiceListener.js')
+var theParkListener = require('./theParkListener.js')
 
 
 
@@ -9,6 +10,7 @@ const debug = {
 }
 
 const fbBisteners = [
+  theParkListener,
   locationListener,
   echoServiceListener,
   debug
