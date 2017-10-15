@@ -31,7 +31,35 @@ const locationListener = {
 const sentMap = (recipient_id, attachments) => ({
     "recipient": {"id": recipient_id},
     "message": {
+<<<<<<< HEAD
       attachments
+=======
+        // "attachment": {
+        //     "type": "template",
+        //     "payload": {
+        //         "template_type": "generic",
+        //         "elements": {
+        //             "element": {
+        //                 "title": "Your current location",
+        //                 "image_url": `https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=${coordinates.lat},${coordinates.long}&zoom=25&markers=${coordinates.lat},${coordinates.long}`,
+        //                 "item_url": `http:\/\/maps.apple.com\/maps?q=${coordinates.lat},${coordinates.long}&z=16`
+        //             }
+        //         }
+        //     }
+        // }
+        "attachment": {
+              "type": "template",
+              "payload": {
+                "template_type": "generic",
+                "elements": [{
+                  "title": 'Nearest parking',
+                  "subtitle": "Ride there, please..",
+                  "image_url": "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyD_W98Jqf_YqRu55ixSEm_lHkHrSoAyUps" +
+                  "&markers=color:red|label:B|51,17&size=360x360&zoom=13"
+                }]
+              }
+            }
+>>>>>>> 1407d49add80c463648e12842547402617941f8b
     }
 })
 
