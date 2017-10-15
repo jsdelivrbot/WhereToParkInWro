@@ -25,15 +25,18 @@ const sentMap = (recipient_id, coordinates) => ({
                 "template_type": "generic",
                 "elements": {
                     "element": {
-                        "title": "Your current location",
-                        "image_url": `https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=${coordinates.lat},${coordinates.long}&zoom=14&markers=${coordinates.lat},${coordinates.long}`,
-                        "item_url": `http:\/\/maps.apple.com\/maps?q=${coordinates.lat},${coordinates.long}&z=14`
+                        "title": "Your nearest parking",
+                        "image_url": `https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=${getLat(coordinates)},${getLong(coordinates)}&zoom=14&markers=${getLat(coordinates)},${getLong(coordinates)}`,
+                        "item_url": `http:\/\/maps.apple.com\/maps?q=${getLat(coordinates)},${getLong(coordinates)}&z=14`
                     }
                 }
             }
         }
     }
 })
+
+const getLat = (coordinates) => coordinates.lat - 0.000001
+const getLong = (coordinates) => coordinates.long - 0.0000003
 
 const askForLocation = (recipient_id) => (
   {
