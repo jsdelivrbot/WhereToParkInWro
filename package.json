@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "babel-node" : "./node_modules/.bin/babel-node",
+    "babel-node": "./node_modules/.bin/babel-node",
     "start": "nodemon --exec npm run babel-node -- ./index.js",
     "test": "node test.js"
   },
@@ -15,6 +15,7 @@
     "babel": "^6.23.0",
     "body-parser": "^1.18.2",
     "express": "4.15.2",
+    "lodash": "^4.17.4",
     "request": "^2.81.0"
   },
   "devDependencies": {
