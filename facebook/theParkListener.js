@@ -3,25 +3,38 @@ const theParkListener = {
   run: (message) => {
     message = 
     {
-        "recipient": {"id": "1686837728027907"},
-        "message": {
             "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": {
-                        "element": {
-                            "title": "Your current location",
-                            "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=51.00,17.00&zoom=25&markers=51.00,17.00",
-                            "item_url": "http:\/\/maps.apple.com\/maps?q=51.00,17.00&z=16"
-                        }
-                    }
-                }
+              "type": "template",
+              "payload": {
+                "template_type": "generic",
+                "elements": [{
+                  "title": 'Nearest parking',
+                  "subtitle": "Ride there, please..",
+                  "image_url": "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyD_W98Jqf_YqRu55ixSEm_lHkHrSoAyUps" +
+                  "&markers=color:red|label:B|51,17&size=360x360&zoom=13"
+                }]
+              }
             }
-        }
-    }  
-    // facebookApi.callSendAPI(message);
-}
+        // "recipient": {"id": "1483947914992026"},
+        // "message": {
+        //     "attachment": {
+        //         "type": "template",
+        //         "payload": {
+        //             "template_type": "generic",
+        //             "elements": {
+        //                 "element": {
+        //                     "title": "Your current location",
+        //                     "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=51,17&zoom=25&markers=51,17",
+        //                     "item_url": "http:\/\/maps.apple.com\/maps?q=51,17&z=16"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    }
+    //facebookApi.sendMessage(message.senderId, message.message)}
+    facebookApi.callSendAPI(message);
+    }
 }
 
 module.exports = theParkListener
