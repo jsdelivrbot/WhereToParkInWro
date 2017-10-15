@@ -44,13 +44,13 @@ module.exports = {
         id: recipientId
       },
       message: {
-        text: messageText
+        text: messageText,
+        quick_replies:[
+          {
+            "content_type":"location"
+          }
+        ]
       },
-      quick_replies:[
-        {
-          "content_type":"location",
-        }
-      ]
     }
     this.callSendAPI(askForLocation)
   }
