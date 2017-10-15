@@ -7,6 +7,7 @@ var facebookApiIntegation = require('./facebook/facebookApiIntegration.js')
 var facebookMessageParser = require('./facebook/facebookMessageParser.js');
 var bodyParser = require('body-parser');
 var fbMsgListeners = require('./facebook/facebookMsgListeners.js')
+var locationListener = require('./facebook/locationListener.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -28,11 +29,7 @@ app.post('/webhook', function (req, res) {
 
   var messages = facebookMessageParser(data);
   messages.forEach(function(message) {
-    var responseAsText = message.message
-    if (message.message === "location") {
-      message.message = 'Now you are lost and again this is my fault..'
-    }
-    fbMsgListeners.listeners.forEach((listener) => {listener.run(message)})
+    fbMsgListeners.runUntilHandled(message)
   });
 
     // Assume all went well.
