@@ -9,7 +9,7 @@ const locationListener = {
         var coordinates = message.attachments[0].payload.coordinates
         return sentMap(message.senderId, coordinates)
       }
-      if(message.message && message.message.indexOf('location') !== -1) {
+      if(message.message && message.message.toLowerCase().trim().indexOf('location') !== -1) {
         return askForLocation(message.senderId)
       }
     }
