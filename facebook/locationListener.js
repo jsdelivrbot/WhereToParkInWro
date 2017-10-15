@@ -26,8 +26,8 @@ const sentMap = (recipient_id, coordinates) => ({
                 "elements": {
                     "element": {
                         "title": "Your current location",
-                        "image_url": `https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=${coordinates.lat},${coordinates.long}&zoom=25&markers=${coordinates.lat},${coordinates.long}`,
-                        "item_url": `http:\/\/maps.apple.com\/maps?q=${coordinates.lat},${coordinates.long}&z=16`
+                        "image_url": `https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=${coordinates.lat},${coordinates.long}&zoom=14&markers=${coordinates.lat},${coordinates.long}`,
+                        "item_url": `http:\/\/maps.apple.com\/maps?q=${coordinates.lat},${coordinates.long}&z=14`
                     }
                 }
             }
