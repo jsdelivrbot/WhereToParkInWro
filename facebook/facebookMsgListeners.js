@@ -8,25 +8,25 @@ const debug = {
   run: (message) => console.log(message)
 }
 
-const listeners = [
+const fbBisteners = [
   locationListener,
   echoServiceListener,
   debug
 ]
 
-const runAll = (message, listeners=listeners) => {
+const runAll = (message, listeners=fbBisteners) => {
   listeners.forEach(
     (listener) =>
       listener.run(message)
     );
 }
 
-const runUntilHandled = (message, listeners=listeners) => {
+const runUntilHandled = (message, listeners=fbBisteners) => {
   listeners.some((listener) => listener.run(message));
 }
 
 module.exports = {
   runAll,
   runUntilHandled,
-  listeners
+  listeners: fbBisteners
 }
