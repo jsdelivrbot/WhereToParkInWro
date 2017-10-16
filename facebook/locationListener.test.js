@@ -53,27 +53,32 @@ describe('locationListener', () => {
   it('should parse location from fb', () => {
     const response = listener.run(messageWithLocationAttachment)
     expect(response).toBeTruthy()
-  //   expect(response).toEqual({
-  //     "recipient": {
-  //     "id": "1483947914992026"
-  //    },
-  //     message: {
-  //    "attachment": {
-  //        "payload": {
-  //          "elements": {
-  //            "element": {
-  //              "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center=51.1078504,17.0777716&zoom=25&markers=51.1078504,17.0777716",
-  //              "item_url": "http://maps.apple.com/maps?q=51.1078504,17.0777716&z=16",
-  //              "title": "Your current location",
-  //             },
-  //          },
-  //         "template_type": "generic",
-  //       "type": "template"
-  //     }
-  // }}})
+    expect(response).toEqual({
+      "recipient": {
+      "id": "1483947914992026"
+     },
+      message: {
+     "attachment": {
+         "payload": {
+           "elements": {
+             "element": {
+                "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center=51.1087504,17.0787716&zoom=14&markers=51.1087504,17.0787716",
+                "item_url": "http://maps.apple.com/maps?q=51.1087504,17.0787716&z=14",
+                "title": "Your nearest parking",
+              }
+           },
+           "template_type": "generic",
+          },
+          "type": "template"
+  }}})
 })
 
   it('should ignore message without location', () => {
     expect(listener.run(messageWithoutLocationAttachment)).toBeFalsy()
+  })
+
+  
+  it('should ignore empty message', () => {
+    expect(listener.run()).toBeFalsy()
   })
 })

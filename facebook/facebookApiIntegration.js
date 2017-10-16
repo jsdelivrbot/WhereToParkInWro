@@ -1,6 +1,5 @@
 
 const validation = (req, res) => {
-  console.log(req)
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === "MyRouters") {
         //Just don't change the bloody password above

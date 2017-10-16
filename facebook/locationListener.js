@@ -1,9 +1,8 @@
-var facebookApi = require('./facebookApi.js')
+var request = require('request')
 var _ = require('lodash')
 
 const locationListener = {
-  run: (message) => {
-    if(message) {
+  run: (message={}) => {
       if(message.attachments &&
         message.attachments.some(attachment => attachment.type === 'location')) {
         var coordinates = message.attachments[0].payload.coordinates
@@ -11,7 +10,6 @@ const locationListener = {
       }
       if(message.message && message.message.toLowerCase().trim().indexOf('location') !== -1) {
         return askForLocation(message.senderId)
-      }
     }
   }
 }

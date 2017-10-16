@@ -1,4 +1,3 @@
-var facebookApi = require('./facebookApi')
 const echoServiceListener = {
   run: (message) => echo(message.senderId, message.message)
 }
